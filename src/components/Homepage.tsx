@@ -227,7 +227,7 @@ export default function Portfolio(): React.ReactElement {
               Specialized in Next.js and modern web technologies.
             </p>
             <div className="flex flex-wrap gap-4 justify-center mb-12">
-              <StatBadge icon={Users} text="100M+ Combined Visits" color="text-orange-300" />
+              <StatBadge icon={Users} text="400M+ Combined Visits" color="text-orange-300" />
               <StatBadge icon={Globe} text="3 Live Projects" color="text-sky-300" />
               <StatBadge icon={Code2} text="Full-Stack Developer" color="text-green-300" />
             </div>
