@@ -156,7 +156,7 @@ export default function Portfolio(): React.ReactElement {
       name: 'adoptmevalues.gg',
       description: 'A comprehensive value tracking platform for Adopt Me players with real-time market data and trading insights.',
       tech: ['Next.js', 'MongoDB', 'Redis', 'TailwindCSS', 'Python'],
-      stats: '7M+ Active users', // 124M visits
+      stats: '8M+ Active users', // 124M visits
       gradient: 'from-pink-500 to-purple-600',
       image: "/amv.png",
       link: 'https://adoptmevalues.gg'
@@ -165,7 +165,7 @@ export default function Portfolio(): React.ReactElement {
       name: 'bloxfruitsvalues.com',
       description: 'The go-to resource for Blox Fruits players to check fruit values, live stocks, and game statistics.',
       tech: ['Next.js', 'Prisma', 'MongoDB', 'TailwindCSS'],
-      stats: '22M+ Active users', // 295M visits
+      stats: '23M+ Active users', // 295M visits
       gradient: 'from-blue-500 to-cyan-600',
       image: "/bfv.png",
       link: 'https://bloxfruitsvalues.com'
@@ -223,11 +223,10 @@ export default function Portfolio(): React.ReactElement {
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Crafting high-performance web applications with 3 years of experience. 
-              Specialized in Next.js and modern web technologies.
+              Specialized in Next.js and modern web technologies with 3 years of experience. 
             </p>
             <div className="flex flex-wrap gap-4 justify-center mb-12">
-              <StatBadge icon={Users} text="400M+ Combined Visits" color="text-orange-300" />
+              <StatBadge icon={Users} text="430M+ Combined Visits" color="text-orange-300" />
               <StatBadge icon={Globe} text="3 Live Projects" color="text-sky-300" />
               <StatBadge icon={Code2} text="Full-Stack Developer" color="text-green-300" />
             </div>
