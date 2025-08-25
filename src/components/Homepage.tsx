@@ -222,7 +222,7 @@ export default function Portfolio(): React.ReactElement {
         "A comprehensive value tracking platform for Adopt Me players with real-time market data and trading insights.",
       tech: ["Next.js", "MongoDB", "Redis", "TailwindCSS", "Python"],
       role: "Owner & Full-Stack Developer",
-      stats: "50k+ Active users", // 124M visits
+      stats: "50k+ Active users",
       gradient: "from-pink-500 to-purple-600",
       link: "https://amvgg.com/",
     },
@@ -244,14 +244,14 @@ export default function Portfolio(): React.ReactElement {
       link: "https://growagardenvalues.gg/",
     },
     {
-      name: "mm2list.com",
+      name: "bladeballvaluelist.com",
       description:
-        "The all in one platform for murdery mystery 2 trading, offering real-time item values and trade insights.",
+        "An insightful platform providing Blade ball RAPs & item values and item statistics.",
       tech: ["Next.js", "Prisma", "MongoDB", "TailwindCSS"],
-      role: "Front-End Developer",
-      stats: "23M+ Active users", 
+      role: "Full-Stack Developer",
+      stats: "", 
       gradient: "from-blue-500 to-cyan-600",
-      link: "https://mm2list.com/",
+      link: "https://bladeballvaluelist.com/",
     },
   ];
 
