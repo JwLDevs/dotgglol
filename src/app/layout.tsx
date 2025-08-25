@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "dotgg.lol",
-  description: "Porfolio site",
+  title: "dotgg.lol | Home",
+  description: "Jung's Porfolio. For business inquiries, email business@dotgg.lol",
 };
 
 export default function RootLayout({
