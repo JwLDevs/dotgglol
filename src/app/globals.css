@@ -65,6 +65,45 @@ body {
   }
 }
 
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform: translateY(0px) translateZ(0px);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-8px) translateZ(20px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes lightRay {
+  0% {
+    opacity: 0;
+    transform: scaleY(0) rotate(var(--rotation));
+  }
+  50% {
+    opacity: 0.3;
+    transform: scaleY(1) rotate(var(--rotation));
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0) rotate(var(--rotation));
+  }
+}
+
+@keyframes gridPulse {
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: perspective(1000px) rotateX(60deg) scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: perspective(1000px) rotateX(60deg) scale(1.05);
+  }
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
@@ -81,4 +120,21 @@ html {
 
 .animate-fade-in-scale {
   animation: fadeInScale 1s ease-out forwards;
+}
+
+.animate-particle-float {
+  animation: particleFloat 4s ease-in-out infinite;
+}
+
+.animate-light-ray {
+  animation: lightRay 3s ease-in-out infinite;
+}
+
+.animate-grid-pulse {
+  animation: gridPulse 6s ease-in-out infinite;
+}
+
+/* Custom utilities */
+.bg-radial-gradient {
+  background: radial-gradient(circle at center, var(--tw-gradient-stops));
 }

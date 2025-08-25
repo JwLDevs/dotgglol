@@ -106,13 +106,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
 
       <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="justify-end flex text-gray-400 hover:text-white transition-colors"
-          aria-label={`Visit ${project.name}`}
-        >
-          <ExternalLink className="w-5 h-5" />
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="justify-end flex text-gray-400 hover:text-white transition-colors"
+        aria-label={`Visit ${project.name}`}
+      >
+        <ExternalLink className="w-5 h-5" />
       </a>
       {/*
 
@@ -131,7 +131,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </a>
       </div>
       */}
-
     </div>
   </div>
 );
@@ -166,6 +165,7 @@ export default function Portfolio(): React.ReactElement {
     y: 0,
   });
   const [pageLoaded, setPageLoaded] = useState(false);
+  const [overlayVisible, setOverlayVisible] = useState(true);
 
   useEffect(() => {
     // Trigger entrance animation after a short delay
@@ -173,7 +173,15 @@ export default function Portfolio(): React.ReactElement {
       setPageLoaded(true);
     }, 100);
 
-    return () => clearTimeout(timer);
+    // Fade out the black overlay
+    const overlayTimer = setTimeout(() => {
+      setOverlayVisible(false);
+    }, 300);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(overlayTimer);
+    };
   }, []);
 
   useEffect(() => {
@@ -224,7 +232,7 @@ export default function Portfolio(): React.ReactElement {
       link: "https://mm2list.com",
     },
     {
-      name: "growagardendatabase.com",
+      name: "growagardenvalues.gg",
       description:
         "A dynamic platform providing real-time stocks, price tracking and trading for Grow a Garden.",
       tech: [
@@ -237,7 +245,7 @@ export default function Portfolio(): React.ReactElement {
       ],
       stats: "N/A",
       gradient: "from-orange-500 to-red-600",
-      link: "https://growagardendatabase.com",
+      link: "https://growagardenvalues.gg",
     },
   ];
 
@@ -276,6 +284,92 @@ export default function Portfolio(): React.ReactElement {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* Black overlay that fades out on page load */}
+      <div
+        className="fixed inset-0 z-50 transition-opacity duration-1000 ease-out"
+        style={{
+          opacity: overlayVisible ? 1 : 0,
+          pointerEvents: overlayVisible ? "auto" : "none",
+        }}
+      >
+        {/* Main dark overlay with transparency */}
+        <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+
+        {/* Animated particles background */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Floating particles */}
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white/30 rounded-full animate-particle-float"
+              style={
+                {
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 8}s`,
+                  animationDuration: `${8 + Math.random() * 12}s`,
+                  "--rotation": `${Math.random() * 360}deg`,
+                } as React.CSSProperties
+              }
+            />
+          ))}
+
+          {/* Larger floating elements */}
+          {[...Array(12)].map((_, i) => (
+            <div
+              key={`large-${i}`}
+              className="absolute bg-white/10 rounded-full blur-sm animate-particle-float"
+              style={
+                {
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  width: `${15 + Math.random() * 35}px`,
+                  height: `${15 + Math.random() * 35}px`,
+                  animationDelay: `${Math.random() * 10}s`,
+                  animationDuration: `${12 + Math.random() * 16}s`,
+                  "--rotation": `${Math.random() * 360}deg`,
+                } as React.CSSProperties
+              }
+            />
+          ))}
+        </div>
+
+        {/* Subtle grid pattern */}
+        <div
+          className="absolute inset-0 opacity-20 animate-grid-pulse"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: "100px 100px",
+            transform: "perspective(1000px) rotateX(60deg)",
+            transformOrigin: "center center",
+          }}
+        />
+
+        {/* Radial gradient overlay for depth */}
+        <div className="absolute inset-0 bg-radial-gradient from-transparent via-black/40 to-black/80" />
+
+        {/* Subtle light rays */}
+        <div className="absolute inset-0">
+          {[...Array(7)].map((_, i) => (
+            <div
+              key={`ray-${i}`}
+              className="absolute w-px h-full bg-gradient-to-b from-transparent via-white/25 to-transparent animate-light-ray"
+              style={
+                {
+                  left: `${15 + i * 12}%`,
+                  "--rotation": `${10 + i * 8}deg`,
+                  animationDelay: `${i * 0.4}s`,
+                  animationDuration: "4s",
+                } as React.CSSProperties
+              }
+            />
+          ))}
+        </div>
+      </div>
+
       {/* Animated background gradient */}
       <div className="fixed inset-0 opacity-30">
         <div
