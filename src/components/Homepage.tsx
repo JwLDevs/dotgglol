@@ -24,6 +24,7 @@ interface Project {
   name: string;
   description: string;
   tech: string[];
+  role: string;
   stats: string;
   gradient: string;
   link: string;
@@ -80,7 +81,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   >
     <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-105 h-full flex flex-col">
       <div
-        className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6`}
+        className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5`}
       >
         <Image
           src={project.link + "/favicon.ico"}
@@ -91,7 +92,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         />
       </div>
       <h3 className="text-2xl font-bold">{project.name}</h3>
-      <div className="flex flex-col gap-4">
+      <span className="text-sm text-yellow-400/80 font-semibold">
+        {project.role}
+      </span>
+      <div className="flex flex-col gap-4 mt-2">
         <p className="text-gray-400 leading-tight">{project.description}</p>
         <div className="flex flex-wrap gap-2">
           {project.tech.map((tech: string, i: number) => (
@@ -104,7 +108,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           ))}
         </div>
       </div>
-
       <a
         href={project.link}
         target="_blank"
@@ -218,18 +221,10 @@ export default function Portfolio(): React.ReactElement {
       description:
         "A comprehensive value tracking platform for Adopt Me players with real-time market data and trading insights.",
       tech: ["Next.js", "MongoDB", "Redis", "TailwindCSS", "Python"],
-      stats: "8M+ Active users", // 124M visits
+      role: "Owner & Full-Stack Developer",
+      stats: "50k+ Active users", // 124M visits
       gradient: "from-pink-500 to-purple-600",
-      link: "https://amvgg.com",
-    },
-    {
-      name: "mm2list.com",
-      description:
-        "The all in one platform for murdery mystery 2 trading, offering real-time item values and trade insights.",
-      tech: ["Next.js", "Prisma", "MongoDB", "TailwindCSS"],
-      stats: "23M+ Active users", // 295M visits
-      gradient: "from-blue-500 to-cyan-600",
-      link: "https://mm2list.com",
+      link: "https://amvgg.com/",
     },
     {
       name: "growagardenvalues.gg",
@@ -243,9 +238,20 @@ export default function Portfolio(): React.ReactElement {
         "TailwindCSS",
         "Python",
       ],
-      stats: "N/A",
+      role: "Full-Stack Developer",
+      stats: "7k+ Active users",
       gradient: "from-orange-500 to-red-600",
-      link: "https://growagardenvalues.gg",
+      link: "https://growagardenvalues.gg/",
+    },
+    {
+      name: "mm2list.com",
+      description:
+        "The all in one platform for murdery mystery 2 trading, offering real-time item values and trade insights.",
+      tech: ["Next.js", "Prisma", "MongoDB", "TailwindCSS"],
+      role: "Front-End Developer",
+      stats: "23M+ Active users", 
+      gradient: "from-blue-500 to-cyan-600",
+      link: "https://mm2list.com/",
     },
   ];
 
