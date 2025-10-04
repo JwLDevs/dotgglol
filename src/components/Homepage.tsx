@@ -3,12 +3,10 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import {
-  ExternalLink,
   Code2,
   Database,
   Server,
   Palette,
-  ChevronDown,
   Users,
   Globe,
   LucideIcon,
@@ -62,79 +60,6 @@ const StatBadge: React.FC<StatBadgeProps> = ({ icon: Icon, text, color }) => (
   <div className="bg-white/10 backdrop-blur-md rounded-full px-6 py-3 flex items-center gap-2 border border-white/20">
     <Icon className={`w-5 h-5 ${color}`} />
     <span>{text}</span>
-  </div>
-);
-
-const ProjectCard: React.FC<ProjectCardProps> = ({
-  project,
-  index,
-  isVisible,
-}) => (
-  <div
-    id={`project-${index}`}
-    className="animate-on-scroll group relative"
-    style={{
-      opacity: isVisible ? 1 : 0,
-      transform: isVisible ? "translateY(0)" : "translateY(30px)",
-      transition: `all 0.8s ease-out ${index * 0.1}s`,
-    }}
-  >
-    <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-105 h-full flex flex-col">
-      <div
-        className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5`}
-      >
-        <Image
-          src={project.link + "/favicon.ico"}
-          alt={`${project.name}`}
-          width={48}
-          height={48}
-          className="rounded-lg object-cover"
-        />
-      </div>
-      <h3 className="text-2xl font-bold">{project.name}</h3>
-      <span className="text-sm text-yellow-400/80 font-semibold">
-        {project.role}
-      </span>
-      <div className="flex flex-col gap-4 mt-2">
-        <p className="text-gray-400 leading-tight">{project.description}</p>
-        <div className="flex flex-wrap gap-2">
-          {project.tech.map((tech: string, i: number) => (
-            <span
-              key={i}
-              className="text-xs bg-white/10 px-3 py-1 rounded-full border border-white/20"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-      </div>
-      <a
-        href={project.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="justify-end flex text-gray-400 hover:text-white transition-colors"
-        aria-label={`Visit ${project.name}`}
-      >
-        <ExternalLink className="w-5 h-5" />
-      </a>
-      {/*
-
-      <div className="flex justify-between items-center">
-        <span className="text-sm text-yellow-400 font-semibold">
-          {project.stats}
-        </span>
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-400 hover:text-white transition-colors"
-          aria-label={`Visit ${project.name}`}
-        >
-          <ExternalLink className="w-5 h-5" />
-        </a>
-      </div>
-      */}
-    </div>
   </div>
 );
 
@@ -214,46 +139,6 @@ export default function Portfolio(): React.ReactElement {
 
     return () => elements.forEach((el: Element) => observer.unobserve(el));
   }, []);
-
-  const projects: Project[] = [
-    {
-      name: "amvgg.com",
-      description:
-        "A comprehensive value tracking platform for Adopt Me players with real-time market data and trading insights.",
-      tech: ["Next.js", "MongoDB", "Redis", "TailwindCSS", "Python"],
-      role: "Owner & Full-Stack Developer",
-      stats: "50k+ Active users",
-      gradient: "from-pink-500 to-purple-600",
-      link: "https://amvgg.com/",
-    },
-    {
-      name: "growagardenvalues.gg",
-      description:
-        "A dynamic platform providing real-time stocks, price tracking and trading for Grow a Garden.",
-      tech: [
-        "Next.js",
-        "PostgreSQL",
-        "NeonDB",
-        "Redis",
-        "TailwindCSS",
-        "Python",
-      ],
-      role: "Full-Stack Developer",
-      stats: "7k+ Active users",
-      gradient: "from-orange-500 to-red-600",
-      link: "https://growagardenvalues.gg/",
-    },
-    {
-      name: "bladeballvaluelist.com",
-      description:
-        "An insightful platform providing Blade ball RAPs & item values and item statistics.",
-      tech: ["Next.js", "Prisma", "MongoDB", "TailwindCSS"],
-      role: "Full-Stack Developer",
-      stats: "", 
-      gradient: "from-blue-500 to-cyan-600",
-      link: "https://bladeballvaluelist.com/",
-    },
-  ];
 
   const techStack: TechStackItem[] = [
     {
@@ -476,7 +361,7 @@ export default function Portfolio(): React.ReactElement {
 
           {/* Action buttons with entrance animation */}
           <div
-            className="flex gap-4 justify-center"
+            className="flex gap-3 justify-center"
             style={{
               opacity: pageLoaded ? 1 : 0,
               transform: pageLoaded ? "translateY(0)" : "translateY(30px)",
@@ -485,55 +370,17 @@ export default function Portfolio(): React.ReactElement {
           >
             <a
               href="mailto:business@dotgg.lol"
-              className="bg-[#d7be74]/80 px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-105"
+              className="bg-gradient-to-r from-[#C0C0C0]/80 to-gray-100/90 px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-105"
             >
               Contact Me
             </a>
             <a
-              href="#projects"
-              className="border border-white/20 px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300"
+              href="https://github.com/JwLDevs"
+              target="_blank"
+              className="border border-white/20 bg-violet-500/20 px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300"
             >
-              View Projects
+              <svg data-v-6433c584="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
             </a>
-          </div>
-        </div>
-
-        {/* Chevron with entrance animation */}
-        <ChevronDown
-          className="absolute bottom-32 left-1/2 transform -translate-x-1/2 w-8 h-8 text-white/50"
-          style={{
-            opacity: pageLoaded ? 1 : 0,
-            transform: pageLoaded
-              ? "translateY(0) translateX(-50%)"
-              : "translateY(20px) translateX(-50%)",
-            transition: "all 1s cubic-bezier(0.34, 1.56, 0.64, 1) 1s",
-          }}
-        />
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="relative px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-[#e0cb8b] to-[#d2d4d6] bg-clip-text text-transparent">
-                Featured Projects
-              </span>
-            </h2>
-            <p className="text-gray-400 text-lg">
-              Websites that reached millions of users worldwide
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {projects.map((project: Project, index: number) => (
-              <ProjectCard
-                key={index}
-                project={project}
-                index={index}
-                isVisible={isVisible[`project-${index}`] || false}
-              />
-            ))}
           </div>
         </div>
       </section>
