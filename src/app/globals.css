@@ -293,14 +293,12 @@ html {
 .holographic-text {
   background: linear-gradient(
     135deg,
-    #ffffff,
-    #f1f5f9,
-    #e2e8f0,
-    #cbd5e1,
-    #94a3b8,
-    #64748b,
-    #475569,
-    #334155
+    #e6eaef,
+    #d1d5da,
+    #b5b8bb,
+    rgb(110, 112, 113),
+    #646669,
+    #505152
   );
   background-size: 400% 400%;
   -webkit-background-clip: text;
