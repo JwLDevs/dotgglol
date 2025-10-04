@@ -258,8 +258,6 @@ export default function Portfolio(): React.ReactElement {
             <span className="holographic-text">Jung</span>
           </h1>
 
-
-
           {/* Stats badges with staggered entrance animation */}
           <div
             className="flex flex-wrap gap-6 justify-center mb-12"
@@ -359,7 +357,7 @@ export default function Portfolio(): React.ReactElement {
         <div className="max-w-7xl mx-auto">
           <div className="glass-card liquid-blob glass-refraction rounded-2xl p-8 text-center">
             <p className="text-gray-300 text-lg">
-              © 2025 Portfolio. Built with Next.js & TailwindCSS
+              © 2025 Portfolio. Built with NextJS 15
             </p>
             <div className="mt-4 flex justify-center gap-4">
               <div className="w-2 h-2 bg-gray-400 rounded-full animate-liquid-pulse"></div>
