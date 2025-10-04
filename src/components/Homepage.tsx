@@ -64,7 +64,7 @@ const TechCard: React.FC<TechCardProps> = ({ tech, index, isVisible }) => (
       >
         {tech.icon}
       </div>
-      <p className="text-sm font-medium group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300">
+      <p className="text-sm font-medium group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-gray-200 group-hover:to-gray-400 group-hover:bg-clip-text transition-all duration-300">
         {tech.name}
       </p>
     </div>
@@ -118,32 +118,32 @@ export default function Portfolio(): React.ReactElement {
     {
       name: "Next.js",
       icon: <Zap className="w-6 h-6" />,
-      color: "text-white",
+      color: "text-gray-300",
     },
     {
       name: "MongoDB",
       icon: <Database className="w-6 h-6" />,
-      color: "text-green-400",
+      color: "text-gray-300",
     },
     {
       name: "Prisma",
       icon: <Server className="w-6 h-6" />,
-      color: "text-blue-400",
+      color: "text-gray-300",
     },
     {
       name: "Redis",
       icon: <Cpu className="w-6 h-6" />,
-      color: "text-red-400",
+      color: "text-gray-300",
     },
     {
       name: "TailwindCSS",
       icon: <Palette className="w-6 h-6" />,
-      color: "text-cyan-400",
+      color: "text-gray-300",
     },
     {
       name: "Python",
       icon: <Layers className="w-6 h-6" />,
-      color: "text-yellow-400",
+      color: "text-gray-300",
     },
   ];
 
@@ -183,8 +183,8 @@ export default function Portfolio(): React.ReactElement {
           className="absolute inset-0 opacity-10 animate-grid-pulse"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(0,212,255,0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,0,110,0.1) 1px, transparent 1px)
+              linear-gradient(rgba(107,114,128,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(156,163,175,0.1) 1px, transparent 1px)
             `,
             backgroundSize: "80px 80px",
             transform: "perspective(1000px) rotateX(60deg)",
@@ -218,7 +218,7 @@ export default function Portfolio(): React.ReactElement {
         <div className="absolute inset-0 glass-card" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="glass-card liquid-blob glass-refraction rounded-full p-8 animate-liquid-pulse">
-            <Sparkles className="w-12 h-12 text-cyan-400 animate-holographic-shift" />
+            <Sparkles className="w-12 h-12 text-gray-300 animate-holographic-shift" />
           </div>
         </div>
       </div>
@@ -258,19 +258,7 @@ export default function Portfolio(): React.ReactElement {
             <span className="holographic-text">Jung</span>
           </h1>
 
-          {/* Description with glass card */}
-          <div
-            className="glass-card liquid-blob glass-refraction rounded-2xl p-6 mb-12 max-w-4xl mx-auto"
-            style={{
-              opacity: pageLoaded ? 1 : 0,
-              transform: pageLoaded ? "translateY(0)" : "translateY(30px)",
-              transition: "all 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s",
-            }}
-          >
-            <p className="text-xl md:text-2xl text-gray-200">
-              Full-Stack Web Developer
-            </p>
-          </div>
+
 
           {/* Stats badges with staggered entrance animation */}
           <div
@@ -284,17 +272,17 @@ export default function Portfolio(): React.ReactElement {
             <StatBadge
               icon={Users}
               text="430M+ Combined Visits"
-              color="text-orange-300"
+              color="text-gray-300"
             />
             <StatBadge
               icon={Globe}
               text="3 Live Projects"
-              color="text-sky-300"
+              color="text-gray-300"
             />
             <StatBadge
               icon={Zap}
               text="Full-Stack Developer"
-              color="text-green-300"
+              color="text-gray-300"
             />
           </div>
 
@@ -348,7 +336,7 @@ export default function Portfolio(): React.ReactElement {
                 <span className="holographic-text">Tech Stack</span>
               </h2>
               <p className="text-gray-300 text-lg">
-                Technologies I work with daily to build the future
+                Technologies I work with daily
               </p>
             </div>
           </div>
@@ -374,13 +362,13 @@ export default function Portfolio(): React.ReactElement {
               © 2025 Portfolio. Built with Next.js & TailwindCSS
             </p>
             <div className="mt-4 flex justify-center gap-4">
-              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-liquid-pulse"></div>
+              <div className="w-2 h-2 bg-gray-400 rounded-full animate-liquid-pulse"></div>
               <div
-                className="w-2 h-2 bg-pink-400 rounded-full animate-liquid-pulse"
+                className="w-2 h-2 bg-gray-500 rounded-full animate-liquid-pulse"
                 style={{ animationDelay: "0.5s" }}
               ></div>
               <div
-                className="w-2 h-2 bg-purple-400 rounded-full animate-liquid-pulse"
+                className="w-2 h-2 bg-gray-600 rounded-full animate-liquid-pulse"
                 style={{ animationDelay: "1s" }}
               ></div>
             </div>
