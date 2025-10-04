@@ -1,32 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
-  Code2,
   Database,
   Server,
   Palette,
   Users,
   Globe,
   LucideIcon,
+  Sparkles,
+  Zap,
+  Cpu,
+  Layers,
 } from "lucide-react";
 
 // Type definitions
-interface MousePosition {
-  x: number;
-  y: number;
-}
-
-interface Project {
-  name: string;
-  description: string;
-  tech: string[];
-  role: string;
-  stats: string;
-  gradient: string;
-  link: string;
-}
 
 interface TechStackItem {
   name: string;
@@ -36,12 +25,6 @@ interface TechStackItem {
 
 interface VisibilityState {
   [key: string]: boolean;
-}
-
-interface ProjectCardProps {
-  project: Project;
-  index: number;
-  isVisible: boolean;
 }
 
 interface TechCardProps {
@@ -57,9 +40,9 @@ interface StatBadgeProps {
 }
 
 const StatBadge: React.FC<StatBadgeProps> = ({ icon: Icon, text, color }) => (
-  <div className="bg-white/10 backdrop-blur-md rounded-full px-6 py-3 flex items-center gap-2 border border-white/20">
-    <Icon className={`w-5 h-5 ${color}`} />
-    <span>{text}</span>
+  <div className="glass-card liquid-blob glass-refraction rounded-full px-6 py-3 flex items-center gap-2 hover:scale-105 transition-all duration-300 group">
+    <Icon className={`w-5 h-5 ${color} group-hover:animate-liquid-pulse`} />
+    <span className="text-sm font-medium">{text}</span>
   </div>
 );
 
@@ -75,25 +58,24 @@ const TechCard: React.FC<TechCardProps> = ({ tech, index, isVisible }) => (
       transition: `all 0.6s ease-out ${index * 0.1}s`,
     }}
   >
-    <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300 hover:transform hover:scale-110 text-center group">
+    <div className="glass-card liquid-blob glass-refraction rounded-2xl p-6 hover:scale-110 transition-all duration-500 text-center group cursor-pointer animate-glass-float">
       <div
-        className={`${tech.color} mb-4 flex justify-center group-hover:scale-125 transition-transform`}
+        className={`${tech.color} mb-4 flex justify-center group-hover:scale-125 group-hover:animate-holographic-shift transition-all duration-300`}
       >
         {tech.icon}
       </div>
-      <p className="text-sm font-medium">{tech.name}</p>
+      <p className="text-sm font-medium group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-400 group-hover:bg-clip-text transition-all duration-300">
+        {tech.name}
+      </p>
     </div>
   </div>
 );
 
 export default function Portfolio(): React.ReactElement {
   const [isVisible, setIsVisible] = useState<VisibilityState>({});
-  const [mousePosition, setMousePosition] = useState<MousePosition>({
-    x: 0,
-    y: 0,
-  });
   const [pageLoaded, setPageLoaded] = useState(false);
   const [overlayVisible, setOverlayVisible] = useState(true);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Trigger entrance animation after a short delay
@@ -110,14 +92,6 @@ export default function Portfolio(): React.ReactElement {
       clearTimeout(timer);
       clearTimeout(overlayTimer);
     };
-  }, []);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent): void => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   useEffect(() => {
@@ -143,7 +117,7 @@ export default function Portfolio(): React.ReactElement {
   const techStack: TechStackItem[] = [
     {
       name: "Next.js",
-      icon: <Code2 className="w-6 h-6" />,
+      icon: <Zap className="w-6 h-6" />,
       color: "text-white",
     },
     {
@@ -158,7 +132,7 @@ export default function Portfolio(): React.ReactElement {
     },
     {
       name: "Redis",
-      icon: <Database className="w-6 h-6" />,
+      icon: <Cpu className="w-6 h-6" />,
       color: "text-red-400",
     },
     {
@@ -168,14 +142,72 @@ export default function Portfolio(): React.ReactElement {
     },
     {
       name: "Python",
-      icon: <Code2 className="w-6 h-6" />,
+      icon: <Layers className="w-6 h-6" />,
       color: "text-yellow-400",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Black overlay that fades out on page load */}
+    <div
+      ref={containerRef}
+      className="min-h-screen bg-black text-white overflow-x-hidden relative"
+    >
+      {/* Liquid Glass Background */}
+      <div className="fixed inset-0 z-0">
+        {/* Animated liquid gradient background */}
+        <div className="absolute inset-0 liquid-bg opacity-20" />
+
+        {/* Floating liquid blobs */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={`blob-${i}`}
+            className="absolute animate-liquid-flow opacity-30"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${200 + Math.random() * 300}px`,
+              height: `${200 + Math.random() * 300}px`,
+              background: `radial-gradient(circle, rgba(${
+                Math.random() * 255
+              }, ${Math.random() * 255}, ${
+                Math.random() * 255
+              }, 0.1) 0%, transparent 70%)`,
+              animationDelay: `${Math.random() * 10}s`,
+              animationDuration: `${15 + Math.random() * 10}s`,
+            }}
+          />
+        ))}
+
+        {/* Holographic grid */}
+        <div
+          className="absolute inset-0 opacity-10 animate-grid-pulse"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(0,212,255,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,0,110,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: "80px 80px",
+            transform: "perspective(1000px) rotateX(60deg)",
+            transformOrigin: "center center",
+          }}
+        />
+
+        {/* Floating particles with glass effect */}
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={`particle-${i}`}
+            className="absolute w-2 h-2 glass-card rounded-full animate-particle-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 8}s`,
+              animationDuration: `${8 + Math.random() * 12}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Loading overlay with liquid glass effect */}
       <div
         className="fixed inset-0 z-50 transition-opacity duration-1000 ease-out"
         style={{
@@ -183,112 +215,20 @@ export default function Portfolio(): React.ReactElement {
           pointerEvents: overlayVisible ? "auto" : "none",
         }}
       >
-        {/* Main dark overlay with transparency */}
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
-
-        {/* Animated particles background */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Floating particles */}
-          {[...Array(30)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 h-1 bg-white/30 rounded-full animate-particle-float"
-              style={
-                {
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 8}s`,
-                  animationDuration: `${8 + Math.random() * 12}s`,
-                  "--rotation": `${Math.random() * 360}deg`,
-                } as React.CSSProperties
-              }
-            />
-          ))}
-
-          {/* Larger floating elements */}
-          {[...Array(12)].map((_, i) => (
-            <div
-              key={`large-${i}`}
-              className="absolute bg-white/10 rounded-full blur-sm animate-particle-float"
-              style={
-                {
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  width: `${15 + Math.random() * 35}px`,
-                  height: `${15 + Math.random() * 35}px`,
-                  animationDelay: `${Math.random() * 10}s`,
-                  animationDuration: `${12 + Math.random() * 16}s`,
-                  "--rotation": `${Math.random() * 360}deg`,
-                } as React.CSSProperties
-              }
-            />
-          ))}
-        </div>
-
-        {/* Subtle grid pattern */}
-        <div
-          className="absolute inset-0 opacity-20 animate-grid-pulse"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: "100px 100px",
-            transform: "perspective(1000px) rotateX(60deg)",
-            transformOrigin: "center center",
-          }}
-        />
-
-        {/* Radial gradient overlay for depth */}
-        <div className="absolute inset-0 bg-radial-gradient from-transparent via-black/40 to-black/80" />
-
-        {/* Subtle light rays */}
-        <div className="absolute inset-0">
-          {[...Array(7)].map((_, i) => (
-            <div
-              key={`ray-${i}`}
-              className="absolute w-px h-full bg-gradient-to-b from-transparent via-white/25 to-transparent animate-light-ray"
-              style={
-                {
-                  left: `${15 + i * 12}%`,
-                  "--rotation": `${10 + i * 8}deg`,
-                  animationDelay: `${i * 0.4}s`,
-                  animationDuration: "4s",
-                } as React.CSSProperties
-              }
-            />
-          ))}
+        <div className="absolute inset-0 glass-card" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="glass-card liquid-blob glass-refraction rounded-full p-8 animate-liquid-pulse">
+            <Sparkles className="w-12 h-12 text-cyan-400 animate-holographic-shift" />
+          </div>
         </div>
       </div>
-
-      {/* Animated background gradient */}
-      <div className="fixed inset-0 opacity-30">
-        <div
-          className="absolute inset-0 bg-gradient-to-br from-indigo-800/30 to-yellow-600/90"
-          style={{
-            transform: `translate(${mousePosition.x * 0.01}px, ${
-              mousePosition.y * 0.01
-            }px)`,
-            animation: pageLoaded ? "float 20s ease-in-out infinite" : "none",
-          }}
-        />
-      </div>
-
-      {/* Grid pattern overlay */}
-      <div
-        className="fixed inset-0 bg-black/40"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)`,
-          backgroundSize: "50px 50px",
-        }}
-      />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex justify-center px-6">
+      <section className="relative min-h-screen flex justify-center px-6 z-10">
         <div className="max-w-5xl mx-auto text-center w-full flex flex-col">
-          {/* Profile Picture with entrance animation */}
+          {/* Profile Picture with liquid glass container */}
           <div
-            className="mb-6 mx-auto"
+            className="mb-8 mx-auto glass-card liquid-blob glass-refraction rounded-full p-4 animate-glass-float"
             style={{
               opacity: pageLoaded ? 1 : 0,
               transform: pageLoaded
@@ -302,40 +242,39 @@ export default function Portfolio(): React.ReactElement {
               alt="Profile Picture"
               width={150}
               height={150}
-              className="rounded-full shadow-lg"
+              className="rounded-full shadow-2xl"
             />
           </div>
 
-          {/* Name with entrance animation */}
+          {/* Name with holographic effect */}
           <h1
-            className="text-5xl md:text-7xl font-bold mb-6"
+            className="text-6xl md:text-8xl font-bold mb-8"
             style={{
               opacity: pageLoaded ? 1 : 0,
               transform: pageLoaded ? "translateY(0)" : "translateY(30px)",
               transition: "all 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s",
             }}
           >
-            <span className="bg-gradient-to-r from-[#e0cb8b] to-[#d2d4d6] bg-clip-text text-transparent">
-              Jung
-            </span>
+            <span className="holographic-text">Jung</span>
           </h1>
 
-          {/* Description with entrance animation */}
-          <p
-            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto"
+          {/* Description with glass card */}
+          <div
+            className="glass-card liquid-blob glass-refraction rounded-2xl p-6 mb-12 max-w-4xl mx-auto"
             style={{
               opacity: pageLoaded ? 1 : 0,
               transform: pageLoaded ? "translateY(0)" : "translateY(30px)",
               transition: "all 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s",
             }}
           >
-            Specialized in Next.js and modern web technologies with 3 years of
-            experience.
-          </p>
+            <p className="text-xl md:text-2xl text-gray-200">
+              Full-Stack Web Developer
+            </p>
+          </div>
 
           {/* Stats badges with staggered entrance animation */}
           <div
-            className="flex flex-wrap gap-4 justify-center mb-12"
+            className="flex flex-wrap gap-6 justify-center mb-12"
             style={{
               opacity: pageLoaded ? 1 : 0,
               transform: pageLoaded ? "translateY(0)" : "translateY(30px)",
@@ -353,15 +292,15 @@ export default function Portfolio(): React.ReactElement {
               color="text-sky-300"
             />
             <StatBadge
-              icon={Code2}
+              icon={Zap}
               text="Full-Stack Developer"
               color="text-green-300"
             />
           </div>
 
-          {/* Action buttons with entrance animation */}
+          {/* Action buttons with glass styling */}
           <div
-            className="flex gap-3 justify-center"
+            className="flex gap-4 justify-center"
             style={{
               opacity: pageLoaded ? 1 : 0,
               transform: pageLoaded ? "translateY(0)" : "translateY(30px)",
@@ -370,36 +309,51 @@ export default function Portfolio(): React.ReactElement {
           >
             <a
               href="mailto:business@dotgg.lol"
-              className="bg-gradient-to-r from-[#C0C0C0]/80 to-gray-100/90 px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-yellow-500/25 transition-all duration-300 hover:scale-105"
+              className="glass-button liquid-blob glass-refraction px-8 py-4 rounded-full font-semibold hover:scale-105 transition-all duration-300 flex items-center gap-2"
             >
+              <Sparkles className="w-5 h-5" />
               Contact Me
             </a>
             <a
               href="https://github.com/JwLDevs"
               target="_blank"
-              className="border border-white/20 bg-violet-500/20 px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300"
+              className="glass-button liquid-blob glass-refraction px-8 py-4 rounded-full font-semibold hover:scale-105 transition-all duration-300 flex items-center gap-2"
             >
-              <svg data-v-6433c584="" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github-icon lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                <path d="M9 18c-4.51 2-5-2-7-2"></path>
+              </svg>
+              GitHub
             </a>
           </div>
         </div>
       </section>
 
       {/* Tech Stack Section */}
-      <section id="skills" className="relative py-20 px-6">
+      <section id="skills" className="relative py-20 px-6 z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-[#e0cb8b] to-[#d2d4d6] bg-clip-text text-transparent">
-                Tech Stack
-              </span>
-            </h2>
-            <p className="text-gray-400 text-lg">
-              Technologies I work with daily
-            </p>
+            <div className="glass-card liquid-blob glass-refraction rounded-2xl p-8 mb-8 inline-block">
+              <h2 className="text-4xl md:text-6xl font-bold mb-4">
+                <span className="holographic-text">Tech Stack</span>
+              </h2>
+              <p className="text-gray-300 text-lg">
+                Technologies I work with daily to build the future
+              </p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
             {techStack.map((tech: TechStackItem, index: number) => (
               <TechCard
                 key={index}
@@ -413,9 +367,24 @@ export default function Portfolio(): React.ReactElement {
       </section>
 
       {/* Footer */}
-      <footer className="relative py-8 px-6 border-t border-white/10">
-        <div className="max-w-7xl mx-auto text-center text-gray-400">
-          <p>© 2025 Portfolio. Built with Next.js & TailwindCSS</p>
+      <footer className="relative py-12 px-6 z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="glass-card liquid-blob glass-refraction rounded-2xl p-8 text-center">
+            <p className="text-gray-300 text-lg">
+              © 2025 Portfolio. Built with Next.js & TailwindCSS
+            </p>
+            <div className="mt-4 flex justify-center gap-4">
+              <div className="w-2 h-2 bg-cyan-400 rounded-full animate-liquid-pulse"></div>
+              <div
+                className="w-2 h-2 bg-pink-400 rounded-full animate-liquid-pulse"
+                style={{ animationDelay: "0.5s" }}
+              ></div>
+              <div
+                className="w-2 h-2 bg-purple-400 rounded-full animate-liquid-pulse"
+                style={{ animationDelay: "1s" }}
+              ></div>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
